@@ -1,15 +1,13 @@
-'use client'
-
 import { Card, CardContent } from '@/components/ui/card'
-import { useContext } from 'react'
-import { ThemeContext } from '../components/Provider'
-import TitlePage from '../components/TitlePage'
 import { TableDemo } from '../components/TableDemo'
-import Map from '../components/Map' 
-import { StatisticsSection } from '../components/StatisticsSection' // Import the new statistics section
+import { StatisticsSection } from '../components/StatisticsSection'
+import dynamic from 'next/dynamic';
+
+// Dynamically import Map with ssr set to false
+const Map = dynamic(() => import('../components/Map'), { ssr: false });
+
 
 function DashboardPage() {
-    const theme = useContext(ThemeContext);
 
     return (
         <>        

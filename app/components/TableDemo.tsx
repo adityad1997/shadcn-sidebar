@@ -1,3 +1,5 @@
+'use client';
+
 import { useState } from "react";
 import {
   Table,
@@ -50,19 +52,19 @@ const entries = [
 
 export function TableDemo() {
   const { theme } = useTheme(); // Get the current theme (light or dark)
-  const [confirmationMessage, setConfirmationMessage] = useState(null);
+  const [confirmationMessage, setConfirmationMessage] = useState<string | null>(null);
   const [isLightboxOpen, setIsLightboxOpen] = useState(false); // State to manage lightbox visibility
   const [lightboxImage, setLightboxImage] = useState(""); // State to hold the clicked image URL
 
   // Set icon colors based on theme
   const iconColor = theme === "dark" ? "text-white" : "text-black";
 
-  const handleAction = (action, entry) => {
+  const handleAction = (action: string, entry: typeof entries[0]) => {
     setConfirmationMessage(`Entry ${action}`);
     setTimeout(() => setConfirmationMessage(null), 2000); 
   };
 
-  const openLightbox = (imageSrc) => {
+  const openLightbox = (imageSrc: string) => {
     setLightboxImage(imageSrc); // Set the clicked image URL
     setIsLightboxOpen(true); // Open the lightbox
   };
@@ -111,11 +113,11 @@ export function TableDemo() {
               <TableCell className="border text-center">{entry.wdCode}</TableCell>
               <TableCell className="border text-center min-h-full">
                 <div className="flex justify-center h-full">
-                  <Button onClick={() => handleAction("Accepted", entry)} variant="success" className="mb-2 flex items-center gap-1">
+                  <Button onClick={() => handleAction("Accepted", entry)} variant="default" className="mb-2 flex items-center gap-1">
                     <CheckCircle className={`w-4 h-4 text-green-500 ${iconColor}`} />
                     Accept
                   </Button>
-                  <Button onClick={() => handleAction("Rejected", entry)} variant="danger" className="flex items-center gap-1">
+                  <Button onClick={() => handleAction("Rejected", entry)} variant="destructive" className="flex items-center gap-1">
                     <XCircle className={`w-4 h-4 text-red-500 ${iconColor}`} />
                     Reject
                   </Button>

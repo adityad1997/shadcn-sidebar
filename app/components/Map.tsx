@@ -6,17 +6,15 @@ import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import L from 'leaflet';
 import { CheckCircle, XCircle } from 'lucide-react';
+import Image from 'next/image';
 
 // Fix default Leaflet icon issues
-delete L.Icon.Default.prototype._getIconUrl;
-L.Icon.Default.mergeOptions({
-  iconRetinaUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-icon-2x.png',
-  iconUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-icon.png',
-  shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-shadow.png',
-});
+L.Icon.Default.prototype.options.iconRetinaUrl = 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-icon-2x.png';
+L.Icon.Default.prototype.options.iconUrl = 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-icon.png';
+L.Icon.Default.prototype.options.shadowUrl = 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-shadow.png';
 
 // Sample data for markers
-const markers = [
+const markers: { id: number, position: [number, number], shopName: string, area: string }[] = [
   { id: 1, position: [26.912743, 75.755192], shopName: 'Shop Name 1', area: 'DS Name 1' },
   { id: 2, position: [26.921624, 75.767692], shopName: 'Shop Name 2', area: 'DS Name 2' },
   { id: 3, position: [26.922746, 75.765192], shopName: 'Shop Name 3', area: 'DS Name 3' },
@@ -26,11 +24,11 @@ const markers = [
 ];
 
 const Map = () => {
-  const [confirmationMessage, setConfirmationMessage] = useState(null);
-  const [openPopupId, setOpenPopupId] = useState(null); // Track open popup ID
+  const [confirmationMessage, setConfirmationMessage] = useState<string | null>(null);
+  const [openPopupId, setOpenPopupId] = useState<number | null>(null); // Track open popup ID
 
   // Handle Accept/Reject actions
-  const handleAction = (action, markerId) => {
+  const handleAction = (action: string, markerId: number) => {
     setConfirmationMessage(`Entry ${action}`);
     setOpenPopupId(null); // Close the popup by resetting openPopupId
     setTimeout(() => setConfirmationMessage(null), 2000); 
@@ -55,8 +53,8 @@ const Map = () => {
               <Popup>
                 <div className="text-center">
                   <h3 className="font-bold">{marker.shopName}</h3>
-                  <p>{marker.area}</p>
-                  <img src="https://via.placeholder.com/100" alt="Placeholder" className="my-2 mx-auto" />
+                  <Image src="https://via.placeholder.com/100" alt="Placeholder" width={100} height={100} className="my-2 mx-auto" />
+                  <Image src="https://via.placeholder.com/100" alt="Placeholder" className="my-2 mx-auto" />
                   <div className="mt-2 flex justify-center space-x-2">
                     <button onClick={() => handleAction("Accepted", marker.id)} className="flex items-center gap-1 text-green-500">
                       <CheckCircle className="w-4 h-4" />
