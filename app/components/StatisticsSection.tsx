@@ -50,7 +50,7 @@ const chartConfig = {
 
 export function StatisticsSection() {
   const totalEntries = React.useMemo(() => {
-    return statsData.reduce((acc, curr) => acc + curr.count, 0)
+    return chartData.reduce((acc, curr) => acc + curr.count, 0)
   }, [])
 
   return (
@@ -60,8 +60,8 @@ export function StatisticsSection() {
         <div className="w-1/3">
           <Card className="h-[350px] flex flex-col"> {/* Set fixed height here */}
             <CardHeader className="items-center pb-0">
-              <CardTitle>Entries Status Chart</CardTitle>
-              <CardDescription>Visualization of entry statuses</CardDescription>
+              <CardTitle>Total Accepted / Rejected Entries </CardTitle>
+              <CardDescription>Last 7</CardDescription>
             </CardHeader>
             <CardContent className="flex-1 pb-0">
               <ChartContainer
