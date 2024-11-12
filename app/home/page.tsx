@@ -12,22 +12,26 @@ function DashboardPage() {
     const theme = useContext(ThemeContext);
 
     return (
-        <>
-            
-
-            {/* Statistics Section */}
-            <StatisticsSection />
+        <>        
+            {/* Map Title and Subtitle Outside the Map Container */}
+            <div className="text-center mb-4">
+                <h2 className="text-xl font-semibold">Map of Shops</h2>
+                <p className="text-sm text-gray-600">Click on a marker to view details and take action</p>
+            </div>
 
             {/* Map Section */}
-            <Card className='mt-10 border-dashed'>
-                <CardContent>
+            <Card className='mb-10 border-dashed'>
+                <CardContent className='p-4'>
                     <Map />
                 </CardContent>
             </Card>
 
-            <div className="mt-10">
+            <div className="mb-10">
                 <TableDemo />
             </div>
+
+            {/* Statistics Section */}
+            <StatisticsSection />
         </>
     )
 }

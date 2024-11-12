@@ -1,29 +1,26 @@
-
-
 import { Metadata } from "next";
 import NavbarComponent from "../components/Navbar";
 import { SidebarMenu } from "../components/Sidebar";
 
-
 export const metadata: Metadata = {
     title: 'Home',
     description: 'Home Page',
-}
-function RootLayout({ children }: {
-    children: React.ReactNode;
-}) {
+};
+
+function RootLayout({ children }: { children: React.ReactNode }) {
     return (
-        <div>
+        <div className="flex flex-col min-h-screen">
             <NavbarComponent />
-            <div className="flex">
-                <div className="hidden sm:block">
+            <div className="flex flex-1 overflow-hidden">
+                <aside className="hidden sm:block min-w-60 border-r shadow-sm">
                     <SidebarMenu />
-                </div>
-                <main className="w-full p-4">{children}</main>
+                </aside>
+                <main className="flex-1 ml-4 p-6 overflow-auto">
+                    {children}
+                </main>
             </div>
         </div>
     );
 }
-
 
 export default RootLayout;

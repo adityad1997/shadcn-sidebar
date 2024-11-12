@@ -42,7 +42,7 @@ export default function NavbarComponent() {
                                 <SheetTrigger className='text-white mt-2'><Menu /></SheetTrigger>
                                 <SheetContent side={"left"} className="w-[300px] sm:w-[340px]">
                                     <SheetHeader>
-                                        <SheetTitle className='text-left text-xl font-bold ml-3'>Brand</SheetTitle>
+                                        <SheetTitle className='text-left text-xl font-bold ml-3'>ITC ERP</SheetTitle>
                                         <SheetDescription>
                                             <SidebarMenu />
                                         </SheetDescription>
@@ -50,17 +50,17 @@ export default function NavbarComponent() {
                                 </SheetContent>
                             </Sheet>
                         </div>
-                        <a className="flex-none text-xl ml-4 font-semibold text-white" href="/dashboard">Brand</a>
+                        <a className="flex-none text-xl ml-4 font-semibold text-white" href="/home">ITC ERP</a>
                     </div>
                     <div className="flex items-center">
                         <DarkModeSwitch
-                            className='mr-2 text-white sm:block'
+                            className='mr-10 text-white sm:block'
                             checked={theme?.theme === 'dark'}
                             onChange={onDarkModeToggle}
                             size={20} />
                         <DropdownMenu>
                             <DropdownMenuTrigger asChild>
-                                <a className="font-medium text-white" href="#" aria-current="page">Username</a>
+                                <a className="font-medium text-white mr-4" href="#" aria-current="page">My Profile</a>
                             </DropdownMenuTrigger>
                             <DropdownMenuContent align="start">
                                 <DropdownMenuItem onClick={() => logout()} className="text-red-400 py-2">
