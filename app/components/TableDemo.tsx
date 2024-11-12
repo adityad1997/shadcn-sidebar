@@ -20,12 +20,11 @@ const cities = [
   "Jaipur", "Udaipur", "Jodhpur", "Bikaner", "Kota", "Ajmer", "Alwar", "Pali", "Chittorgarh", "Sikar"
 ];
 
-const entries = [
+const initialEntries = [
   {
     srNo: "1",
     name: "Rajesh Shah",
-    number: "9887122097",
-    image: "https://via.placeholder.com/50",
+    image: "/images/default-image.png",
     shopName: "Vanshika Kirana Store",
     city: "Jaipur",
     wdCode: "JP3360",
@@ -33,25 +32,112 @@ const entries = [
   {
     srNo: "2",
     name: "Santosh Sharma",
-    number: "7357699964",
-    image: "https://via.placeholder.com/50",
+    image: "/images/default-image.png",
     shopName: "A-Start Restaurant",
     city: "Jaipur",
     wdCode: "JP3395",
   },
   {
     srNo: "3",
-    name: "KUNJBIHARI",
-    number: "9828121593",
-    image: "https://via.placeholder.com/50",
+    name: "Anil Kumar",
+    image: "/images/default-image.png",
     shopName: "Jay Mata Di Pan Center",
     city: "Jaipur",
     wdCode: "JP3395",
+  },
+  {
+    srNo: "4",
+    name: "Anil Kumar",
+    image: "/images/default-image.png",
+    shopName: "Sweets & Snacks",
+    city: "Udaipur",
+    wdCode: "UD4200",
+  },
+  {
+    srNo: "5",
+    name: "Ravi Sharma",
+    image: "/images/default-image.png",
+    shopName: "Shree Ram Hardware",
+    city: "Jodhpur",
+    wdCode: "JD5032",
+  },
+  {
+    srNo: "6",
+    name: "Manoj Soni",
+    image: "/images/default-image.png",
+    shopName: "Manoj Mart",
+    city: "Bikaner",
+    wdCode: "BK6001",
+  },
+  {
+    srNo: "7",
+    name: "Rajesh Shah",
+    image: "/images/default-image.png",
+    shopName: "Neelam Stationery Store",
+    city: "Kota",
+    wdCode: "KT6123",
+  },
+  {
+    srNo: "8",
+    name: "Ravi Sharma",
+    image: "/images/default-image.png",
+    shopName: "Sharma Stationery Shop",
+    city: "Ajmer",
+    wdCode: "AJ7345",
+  },
+  {
+    srNo: "9",
+    name: "Arvind Yadav",
+    image: "/images/default-image.png",
+    shopName: "Arvind General Store",
+    city: "Alwar",
+    wdCode: "AL8511",
+  },
+  {
+    srNo: "10",
+    name: "Rajesh Shah",
+    image: "/images/default-image.png",
+    shopName: "Pooja Stationery",
+    city: "Pali",
+    wdCode: "PL9200",
+  },
+  {
+    srNo: "11",
+    name: "Vijay Singh",
+    image: "/images/default-image.png",
+    shopName: "Vijay Shoe Mart",
+    city: "Chittorgarh",
+    wdCode: "CT1065",
+  },
+  {
+    srNo: "12",
+    name: "Rohit Meena",
+    image: "/images/default-image.png",
+    shopName: "Meena Mart ",
+    city: "Sikar",
+    wdCode: "SK1324",
+  },
+  {
+    srNo: "13",
+    name: "Kartik Mishra",
+    image: "/images/default-image.png",
+    shopName: "Mishra Stationery",
+    city: "Udaipur",
+    wdCode: "UD4532",
+  },
+  {
+    srNo: "14",
+    name: "Rohit Meena",
+    image: "/images/default-image.png",
+    shopName: "Geeta Stationery",
+    city: "Jaipur",
+    wdCode: "JP7777",
   },
 ];
 
 export function TableDemo() {
   const { theme } = useTheme(); // Get the current theme (light or dark)
+  const [entries, setEntries] = useState(initialEntries); // Use state to manage entries
   const [confirmationMessage, setConfirmationMessage] = useState<string | null>(null);
   const [isLightboxOpen, setIsLightboxOpen] = useState(false); // State to manage lightbox visibility
   const [lightboxImage, setLightboxImage] = useState(""); // State to hold the clicked image URL
@@ -62,6 +148,11 @@ export function TableDemo() {
   const handleAction = (action: string, entry: typeof entries[0]) => {
     setConfirmationMessage(`Entry ${action}`);
     setTimeout(() => setConfirmationMessage(null), 2000); 
+
+    // Remove the entry from the table after action
+    if (action === "Accepted" || action === "Rejected") {
+      setEntries((prevEntries) => prevEntries.filter((e) => e.srNo !== entry.srNo));
+    }
   };
 
   const openLightbox = (imageSrc: string) => {
@@ -101,9 +192,9 @@ export function TableDemo() {
               <TableCell className="border text-center">
                 <Image
                   src={entry.image}
-                  alt={`${entry.name} Image`}
-                  width={50}
-                  height={50}
+                  alt="Default Image" 
+                  width={50}  
+                  height={50}  
                   className="rounded mx-auto cursor-pointer"
                   onClick={() => openLightbox(entry.image)} // Open lightbox on image click
                 />
@@ -112,13 +203,22 @@ export function TableDemo() {
               <TableCell className="border text-center">{entry.city}</TableCell>
               <TableCell className="border text-center">{entry.wdCode}</TableCell>
               <TableCell className="border text-center min-h-full">
-                <div className="flex justify-center h-full">
-                  <Button onClick={() => handleAction("Accepted", entry)} variant="default" className="mb-2 flex items-center gap-1">
-                    <CheckCircle className={`w-4 h-4 text-green-500 ${iconColor}`} />
+                <div className="flex justify-center h-full gap-2">
+                  {/* Accept Button with Inline Styling */}
+                  <Button
+                    onClick={() => handleAction("Accepted", entry)}
+                    className="mb-2 flex items-center gap-1 text-white bg-green-500 hover:bg-green-600 rounded px-4 py-2 text-sm"
+                  >
+                    <CheckCircle className={`w-4 h-4 ${iconColor}`} />
                     Accept
                   </Button>
-                  <Button onClick={() => handleAction("Rejected", entry)} variant="destructive" className="flex items-center gap-1">
-                    <XCircle className={`w-4 h-4 text-red-500 ${iconColor}`} />
+
+                  {/* Reject Button with Inline Styling */}
+                  <Button
+                    onClick={() => handleAction("Rejected", entry)}
+                    className="flex items-center gap-1 text-white bg-red-500 hover:bg-red-600 rounded px-4 py-2 text-sm"
+                  >
+                    <XCircle className={`w-4 h-4 ${iconColor}`} />
                     Reject
                   </Button>
                 </div>
@@ -143,7 +243,7 @@ export function TableDemo() {
         >
           <div 
             className="relative"
-            onClick={(e) => e.stopPropagation()} // Prevent closing when clicking inside the lightbox
+            onClick={(e) => e.stopPropagation()} 
           >
             <Image
               src={lightboxImage}

@@ -61,7 +61,7 @@ export function StatisticsSection() {
           <Card className="h-[350px] flex flex-col"> {/* Set fixed height here */}
             <CardHeader className="items-center pb-0">
               <CardTitle>Total Accepted / Rejected Entries </CardTitle>
-              <CardDescription>Last 7</CardDescription>
+              <CardDescription>Last 7 days</CardDescription>
             </CardHeader>
             <CardContent className="flex-1 pb-0">
               <ChartContainer
