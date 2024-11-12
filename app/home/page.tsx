@@ -13,7 +13,13 @@ function DashboardPage() {
 
     return (
         <>
-            
+                    
+            {/* Map Section */}
+            <Card className='mt-10 border-dashed'>
+                <CardContent>
+                    <Map />
+                </CardContent>
+            </Card>
 
             {/* Statistics Section */}
             <StatisticsSection />
