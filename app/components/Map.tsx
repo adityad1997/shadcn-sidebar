@@ -24,7 +24,7 @@ const markers = Array.from({ length: 20 }, (_, i) => ({
 
 const Map = () => {
   return (
-    <MapContainer center={[26.912743, 75.755192]} zoom={10} style={{ height: '400px', width: '100%' }}>
+    <MapContainer center={[26.912743, 75.755192]} zoom={10} style={{ height: '60vh', width: 'auto', zIndex: '0' }}>
       <TileLayer
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'

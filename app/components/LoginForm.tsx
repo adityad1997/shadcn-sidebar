@@ -23,7 +23,7 @@ function LoginForm() {
 
             toast("Login Success", {
                 className: "bg-green-500",
-                description: "Redirect to home page",
+                description: "Redirecting to dashboard",
             })
             router.replace('/home');
             setLoading(false);
@@ -69,7 +69,7 @@ function LoginForm() {
                         </FormItem>
                     )}
                 />
-                <Button loading={loading} type="submit">Masuk</Button>
+                <Button loading={loading} type="submit">Login</Button>
             </form>
         </Form >
     )

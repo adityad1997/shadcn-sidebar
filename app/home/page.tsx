@@ -15,7 +15,7 @@ function DashboardPage() {
         <>        
             {/* Map Section */}
             <Card className='mb-10 border-dashed'>
-                <CardContent>
+                <CardContent className='p-4'>
                     <Map />
                 </CardContent>
             </Card>
