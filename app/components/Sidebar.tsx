@@ -1,7 +1,7 @@
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { cn } from "@/lib/utils";
-import { ChevronDownIcon, Home, ListVideo, Mic2, Music, Play, RadioIcon, SquareStack, User } from "lucide-react";
+import { ChevronDownIcon, Home, Users, BarChart, FileText, Settings } from "lucide-react";  // Updated icons
 import Link from "next/link";
 import * as React from "react";
 
@@ -24,35 +24,35 @@ export function SidebarMenu() {
         {
             label: "Discover",
             name: "Dashboard Home",
-            icon: <Home size={15} className="mr-2" />,
+            icon: <Home size={15} className="mr-2" />,  // Home icon for Dashboard Home
             href: "/home",
         },
         {
             label: "Discover",
             name: "Salesmen Management",
-            icon: <SquareStack size={15} className="mr-2" />,
+            icon: <Users size={15} className="mr-2" />,  // Users icon for Salesmen Management
             href: "/home",
         },
         {
             label: "Discover",
             name: "Wholesaler Performance",
-            icon: <RadioIcon size={15} className="mr-2" />,
+            icon: <BarChart size={15} className="mr-2" />,  // BarChart icon for Wholesaler Performance
             href: "/home/",
         },
         {
             label: "Others",
             name: "Analytics & Reports",
-            icon: <Play size={15} className="mr-2" />,
+            icon: <FileText size={15} className="mr-2" />,  // FileText icon for Analytics & Reports
             href: "/home/playlist",
             submenu: [
                 {
                     name: "Daily Analytics",
-                    icon: <ListVideo size={15} className="mr-2" />,
+                    icon: <FileText size={15} className="mr-2" />,
                     href: "/home/",
                 },
                 {
                     name: "Weekly Analytics",
-                    icon: <ListVideo size={15} className="mr-2" />,
+                    icon: <FileText size={15} className="mr-2" />,
                     href: "/home/",
                 },
             ],
@@ -60,7 +60,7 @@ export function SidebarMenu() {
         {
             label: "Others",
             name: "Settings & Preferences",
-            icon: <Music size={15} className="mr-2" />,
+            icon: <Settings size={15} className="mr-2" />,  // Settings icon for Settings & Preferences
             href: "/home/",
         },
     ];
